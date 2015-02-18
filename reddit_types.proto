@@ -1,0 +1,185 @@
+package reddit;
+
+message Comment {
+   optional int32 ups                     = 1;
+   optional int32 downs                   = 2;
+   optional bool likes                    = 3;
+
+   optional int64 created                 = 4;
+   optional int64 created_utc             = 5;
+
+   optional string approved_by            = 6;
+   optional string author                 = 7;
+   optional string author_flair_css_class = 8;
+   optional string author_flair_text      = 9;
+   optional string banned_by              = 10;
+   optional string body                   = 11;
+   optional string body_html              = 12;
+   optional int64 edited                  = 13;
+   optional int32 gilded                  = 14;
+   optional string link_author            = 15;
+   optional string link_id                = 16;
+   optional string link_title             = 17;
+   optional int32 num_reports             = 18;
+   optional string parent_id              = 19;
+   optional Thing replies                 = 20;
+   optional bool saved                    = 21;
+   optional string subreddit              = 22;
+   optional string subreddit_id           = 23;
+   optional string distinguished          = 24;
+
+   optional string id                     = 25;
+   optional string name                   = 26;
+}
+
+message Account {
+   optional int64 created                 = 1;
+   optional int64 created_utc             = 2;
+
+   optional int32 comment_karma           = 3;
+   optional bool has_mail                 = 4;
+   optional bool has_mod_mail             = 5;
+   optional bool has_verified_email       = 6;
+   optional bool is_friend                = 7;
+   optional bool is_gold                  = 8;
+   optional bool is_mod                   = 9;
+   optional int32 link_karma              = 10;
+   optional string modhash                = 11;
+   optional bool over_18                  = 12;
+
+   optional string id                     = 13;
+   optional string name                   = 14;
+}
+
+message Link {
+   optional int32 ups                     = 1;
+   optional int32 downs                   = 2;
+   optional bool likes                    = 3;
+
+   optional int64 created                 = 4;
+   optional int64 created_utc             = 5;
+
+   optional string author                 = 6;
+   optional string author_flair_css_class = 7;
+   optional string author_flair_text      = 8;
+   optional bool clicked                  = 9;
+   optional string domain                 = 10;
+   optional bool hidden                   = 11;
+   optional bool is_self                  = 12;
+   optional string link_flair_css_class   = 13;
+   optional string link_flair_text        = 14;
+   optional string media                  = 15; // ???
+   optional string media_embed            = 16; // ???
+   optional int32 num_comments            = 17;
+   optional bool over_18                  = 18;
+   optional string permalink              = 19;
+   optional bool saved                    = 20;
+   optional int32 score                   = 21;
+   optional string selftext               = 22;
+   optional string selftext_html          = 23;
+   optional string subreddit              = 24;
+   optional string subreddit_id           = 25;
+   optional string thumbnail              = 26;
+   optional string title                  = 27;
+   optional string url                    = 28;
+   optional int64 edited                  = 29;
+   optional string distinguished          = 30;
+   optional bool stickied                 = 31;
+
+   optional string id                     = 32;
+   optional string name                   = 33;
+}
+
+message Message {
+   optional int64 created                 = 1;
+   optional int64 created_utc             = 2;
+
+   optional string author                 = 3;
+   optional string body                   = 4;
+   optional string body_html              = 5;
+   optional string context                = 6;
+   optional string first_message          = 7; // ???
+   optional bool likes                    = 8;
+   optional string link_title             = 9;
+   optional bool new                      = 10;
+   optional string parent_id              = 11;
+   optional string replies                = 12;
+   optional string subject                = 13;
+   optional string subreddit              = 14;
+   optional bool was_comment              = 15;
+
+   optional string id                     = 16;
+   optional string name                   = 17;
+}
+
+message Subreddit {
+   optional int32 accounts_active         = 1;
+   optional int32 comment_score_hide_mins = 2;
+   optional string description            = 3;
+   optional string description_html       = 4;
+   optional string display_name           = 5;
+   optional string header_img             = 6;
+   repeated int32 header_size             = 7;
+   optional string header_title           = 8;
+   optional bool over_18                  = 9;
+   optional string public_description     = 10;
+   optional bool public_traffic           = 11;
+   optional int64 subscribers             = 12;
+   optional string submission_type        = 13;
+   optional string submit_link_label      = 14;
+   optional string submit_text_label      = 15;
+   optional string subreddit_type         = 16;
+   optional string title                  = 17;
+   optional string url                    = 18;
+   optional bool user_is_banned           = 19;
+   optional bool user_is_contributor      = 20;
+   optional bool user_is_moderator        = 21;
+   optional bool user_is_subscriber       = 22;
+
+   optional string id                     = 23;
+   optional string name                   = 24;
+}
+
+message Listing {
+   optional string before = 1;
+   optional string after = 2;
+   optional string modhash = 3;
+
+   repeated Thing children = 4;
+}
+
+message More {
+   optional int64 count = 1;
+   optional string parent_id = 2;
+   repeated string children = 3;
+
+   optional string id = 4;
+   optional string name = 5;
+
+}
+
+message Thing {
+   optional Comment comment_data = 1;
+   optional Account account_data = 2;
+   optional Link link_data = 3;
+   optional Message message_data = 4;
+   optional Subreddit subreddit_data = 5;
+   optional Listing listing_data = 6;
+   optional More more_data = 7;
+
+   optional string kind = 8;
+}
+
+message LoginData {
+   optional string cookie = 1;
+   optional string modhash = 2;
+}
+
+message Error {
+   repeated string info = 1;
+}
+
+message LoginResponse {
+   repeated Error errors = 1;
+   optional LoginData data = 2;
+}
